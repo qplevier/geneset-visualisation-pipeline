@@ -1,0 +1,8 @@
+channels:
+  - r
+  - bioconda
+dependencies:
+  - r-essentials
+  - bioconductor-biobase
+  - bioconductor-phyloseq
+  - r-tidyverse

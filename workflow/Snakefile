@@ -1,0 +1,122 @@
+configfile: "config/config.yaml"
+
+import pandas as pd
+
+# Load the metadata and get micros and timepoints
+meta = pd.read_csv(config["metadata"],delimiter="\t")
+MICROS = meta["micro"].unique()
+TIMEPOINTS = meta["time"].unique()
+BASELINE = config["baseline"]
+TIMEPOINTS_NO_BASELINE = TIMEPOINTS[
+    ~(TIMEPOINTS == BASELINE)]  # No zero point / intercept / nulpunt
+
+onstart:
+    shell("bash workflow/scripts/cleanup_snakemake.sh")
+
+rule all:
+    input:
+        expand("data/diffential_gene_expression/DGE_{micro}.xlsx",micro=MICROS),
+        expand("data/maaslin_output/maaslin_DGE_{micro}",micro=MICROS),
+        # expand("data/gsea_output/{micro}_{timepoint}",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
+        # expand("data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
+        expand("output/bubble/{micro}_{timepoint}.png", micro=MICROS, timepoint=TIMEPOINTS),
+        expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE)
+
+rule phyloseq_obj:
+    input:
+        countdata=config["countdata"],
+        metadata=config["metadata"]
+    output:
+        physeq_out="data/phyloseq/physeq_obj.rds",
+        physeq_out_rxn="data/phyloseq/physeq_obj_rxn.rds"
+    script: "scripts/1_make_ps_obj.R"
+
+rule betadiversity_bubbleplot:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds"
+    output:
+        png="output/bubble/{micro}_{timepoint}.png"
+    params:
+        micro="{micro}",
+        timepoint="{timepoint}",
+        top=40
+    script:
+        "scripts/1.5_bubbleplot.R"
+
+rule differential_analysis_limma:
+    input:
+        physeq="data/phyloseq/physeq_obj.rds"
+    output:
+        dge_out="data/diffential_gene_expression/DGE_{micro}.xlsx"
+    params:
+        micro="{micro}"
+    script:
+        "scripts/2_limma.R"
+
+rule differential_analysis_limma_rxn:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds"
+    output:
+        dge_out="data/diffential_gene_expression/rxn_DGE_{micro}.xlsx"
+    params:
+        micro="{micro}"
+    script:
+        "scripts/2_limma.R"
+
+rule differential_analysis_maaslin2:
+    input:
+        physeq="data/phyloseq/physeq_obj.rds"
+    params:
+        micro="{micro}",
+        transformation=config["transformation"],# LOG, LOGIT, AST, NONE
+        analysis_method=config["analysis_method"]  # LM, CPLM
+    output:
+        out_dir_maaslin=directory("data/maaslin_output/maaslin_DGE_{micro}")
+    script:
+        "scripts/2_maaslin2.R"
+
+rule GSEA_rankings:
+    input:
+        dge="data/diffential_gene_expression/rxn_DGE_{micro}.xlsx"
+    output:
+        out_rank="data/gsea_input/rxn_ranked_{micro}_{timepoint}.rnk"
+    params:
+        timepoint="{timepoint}"
+    script:
+        "scripts/3_gsea_input.R"
+
+rule GSEA_run:
+    input:
+        rank="data/gsea_input/rxn_ranked_{micro}_{timepoint}.rnk",
+        gmt="do_not_touch/gsea_input/metacyc_pathways.gmt"
+    output:
+        output_dir_gsea=directory("data/gsea_output/{micro}_{timepoint}")
+    params:
+        out_dir_gsea=directory("data/gsea_output"),
+        rpt_label="{micro}_{timepoint}"
+    script:
+        "scripts/3_gsea.sh"
+
+rule prep_cytoscape:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds"
+    output:
+        expression="data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt"
+    params:
+        baseline=BASELINE,
+        micro="{micro}",
+        timepoint="{timepoint}"
+    script:
+        "scripts/4_prep_cytoscape.R"
+
+rule cytoscape_enrichmentmap:
+    input:
+        gsea="data/gsea_output/{micro}_{timepoint}",
+        gmt="do_not_touch/gsea_input/metacyc_pathways.gmt",
+        expression="data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt"
+    output:
+        image="output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg"
+    resources:
+        cytoscape_instances=1
+    script:
+        "scripts/4_cytoscape.R"

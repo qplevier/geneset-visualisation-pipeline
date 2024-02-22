@@ -1,0 +1,8 @@
+# Project exclude paths
+/.snakemake/
+/data/
+/Cytoscape_v3.10.1/
+/do_not_touch/
+/output/
+/dag.svg
+/rulegraph.svg

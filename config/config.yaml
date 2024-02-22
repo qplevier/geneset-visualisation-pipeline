@@ -1,0 +1,8 @@
+# Change yourself for your user_input data
+countdata: "data/user_input/rxn-cpm-named.tsv"
+metadata: "data/user_input/sampleinfo.txt"
+baseline: "T0"
+
+# Params for Maaslin2
+transformation: "LOG" # LOG, LOGIT, AST, NONE
+analysis_method: "LM" # LM, CPLM
