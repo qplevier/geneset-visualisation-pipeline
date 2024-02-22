@@ -14,7 +14,7 @@ Cytoscape/Cytoscape
 ## Running the snakemake
 Change the `-c4` with the amount of course you would like to use.
 ```shell
-snakemake --resources cytoscape_instances=1 -c4
+snakemake --resources cytoscape_instances=1 --use-conda -c4
 ```
 
 ## Creating Directed Acyclic Graphs

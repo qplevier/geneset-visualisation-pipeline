@@ -1,9 +1,15 @@
-library(tidyverse)
+# Title     : TODO
+# Objective : TODO
+# Created by: Quinten Plevier
+# Created on: 22-2-2024
+
+# Load libraries
+library(tidyverse, quietly = TRUE)
 library(phyloseq)
 library(ggplot2)
 library(RColorBrewer)
 
-#create color package
+# Create color package
 mycolors <- c(brewer.pal(name="Set1", n = 8),
               brewer.pal(name="Dark2", n = 8),
               brewer.pal(name="Set2", n = 8),
@@ -87,4 +93,4 @@ ggplot(table, aes(x = id_sample, y = reorder(Species, desc(Species)), size = Rel
        title = glue::glue("{snakemake@params[['top']]} most abundant species")) +
   theme(strip.text.x = element_text(size = 12))
 
-ggsave(snakemake@output[["png"]], height = (snakemake@params[["top"]] * 40 + 450), units = "px")
+ggsave(snakemake@output[["png"]], height = (snakemake@params[["top"]] * 40 + 450), units = "px", device = "png")

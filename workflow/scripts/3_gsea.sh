@@ -4,4 +4,6 @@ do_not_touch/GSEA_4.3.3/gsea-cli.sh GSEAPreranked -gmx "${snakemake_input[gmt]}"
 
 mv "${snakemake_output[output_dir_gsea]}".* "${snakemake_output[output_dir_gsea]}"
 
-rm -r "$(date +'%b%d' | tr '[:upper:]' '[:lower:]')"
+if [ -d "$(date +'%b%d' | tr '[:upper:]' '[:lower:]')" ]; then
+    rm -r "$(date +'%b%d' | tr '[:upper:]' '[:lower:]')"
+fi

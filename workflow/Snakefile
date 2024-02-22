@@ -11,14 +11,12 @@ TIMEPOINTS_NO_BASELINE = TIMEPOINTS[
     ~(TIMEPOINTS == BASELINE)]  # No zero point / intercept / nulpunt
 
 onstart:
-    shell("bash workflow/scripts/cleanup_snakemake.sh")
+    shell("bash workflow/scripts/0_cleanup_snakemake.sh")
 
 rule all:
     input:
         expand("data/diffential_gene_expression/DGE_{micro}.xlsx",micro=MICROS),
         expand("data/maaslin_output/maaslin_DGE_{micro}",micro=MICROS),
-        # expand("data/gsea_output/{micro}_{timepoint}",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
-        # expand("data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
         expand("output/bubble/{micro}_{timepoint}.png", micro=MICROS, timepoint=TIMEPOINTS),
         expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE)
 
@@ -29,7 +27,9 @@ rule phyloseq_obj:
     output:
         physeq_out="data/phyloseq/physeq_obj.rds",
         physeq_out_rxn="data/phyloseq/physeq_obj_rxn.rds"
-    script: "scripts/1_make_ps_obj.R"
+    conda:
+        "envs/1_phyloseq.yaml"
+    script: "scripts/1_phyloseq_obj.R"
 
 rule betadiversity_bubbleplot:
     input:
@@ -40,6 +40,8 @@ rule betadiversity_bubbleplot:
         micro="{micro}",
         timepoint="{timepoint}",
         top=40
+    conda:
+        "envs/1.5_bubble.yaml"
     script:
         "scripts/1.5_bubbleplot.R"
 
@@ -50,6 +52,8 @@ rule differential_analysis_limma:
         dge_out="data/diffential_gene_expression/DGE_{micro}.xlsx"
     params:
         micro="{micro}"
+    # conda:
+    #     "envs/2_limma.yaml"
     script:
         "scripts/2_limma.R"
 
@@ -60,6 +64,8 @@ rule differential_analysis_limma_rxn:
         dge_out="data/diffential_gene_expression/rxn_DGE_{micro}.xlsx"
     params:
         micro="{micro}"
+    # conda:
+    #     "envs/2_limma.yaml"
     script:
         "scripts/2_limma.R"
 

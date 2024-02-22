@@ -1,4 +1,4 @@
-library(tidyverse)
+library(tidyverse, quietly = TRUE)
 library(readxl)
 
 dge <- read_excel(snakemake@input[["dge"]], sheet = "allresults") %>%

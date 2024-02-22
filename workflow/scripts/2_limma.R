@@ -1,10 +1,16 @@
-library(tidyverse)
+# Title     : TODO
+# Objective : TODO
+# Created by: Quinten Plevier
+# Created on: 22-2-2024
+
+# Load libraries
+library(tidyverse, quietly = TRUE)
 library(phyloseq)
 library(variancePartition)
 library(BiocParallel)
 library(edgeR)
 library(openxlsx)
-register(SnowParam(2, "SOCK", progressbar = T))
+register(SnowParam(1, "SOCK", progressbar = T))
 
 physeq <- read_rds(snakemake@input[["physeq"]])
 

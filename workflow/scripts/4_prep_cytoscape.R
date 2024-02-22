@@ -1,4 +1,4 @@
-library(tidyverse)
+library(tidyverse, quietly = TRUE)
 library(readxl)
 library(phyloseq)
 

@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconductor-phyloseq=1.46.0
+  - r-tidyverse=2.0.0
+  - r-ggplot2=3.4.4

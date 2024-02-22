@@ -1,5 +1,5 @@
 library(RCy3)
-library(tidyverse)
+library(tidyverse, quietly = TRUE)
 library(glue)
 library(tools)
 
@@ -42,7 +42,7 @@ Sys.sleep(10)
 if (typeof(getAllEdges()) != "NULL") {
   commandsGET('autoannotate annotate-clusterBoosted labelColumn="EnrichmentMap::GS_DESCR" minWordOccurrence=1')
   Sys.sleep(1)
-  commandsGET("layout autoannotate-cose-cluster springStrength=20")# useCatchallCluster=true")#
+  commandsGET("layout autoannotate-cose-cluster springStrength=40 repulsionStrength=30")# useCatchallCluster=true")#
   # This takes time, but the API returns immediately. Sleep for 5 sec and hope
   # that the annotation is complete in this time
   Sys.sleep(3)

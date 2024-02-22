@@ -1,6 +1,6 @@
 library(Maaslin2)
 library(phyloseq)
-library(tidyverse)
+library(tidyverse, quietly = TRUE)
 
 physeq <- read_rds(snakemake@input[["physeq"]])
 
