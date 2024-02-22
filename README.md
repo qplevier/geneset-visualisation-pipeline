@@ -24,3 +24,5 @@ snakemake --dag | dot -Tsvg > dag.svg
 # Use the command below for a simplified DAG
 snakemake --rulegraph | dot -Tsvg > rulegraph.svg
 ```
+
+![rulegraph.svg](rulegraph.svg)
