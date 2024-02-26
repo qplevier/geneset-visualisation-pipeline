@@ -15,10 +15,11 @@ onstart:
 
 rule all:
     input:
+        expand("output/bubble/{micro}_{timepoint}.png", micro=MICROS, timepoint=TIMEPOINTS),
+        "output/betadiversity/betadiversity.png",
         expand("data/diffential_gene_expression/DGE_{micro}.xlsx",micro=MICROS),
         expand("data/maaslin_output/maaslin_DGE_{micro}",micro=MICROS),
-        expand("output/bubble/{micro}_{timepoint}.png", micro=MICROS, timepoint=TIMEPOINTS),
-        expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE)
+        # expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE)
 
 rule phyloseq_obj:
     input:
@@ -31,7 +32,7 @@ rule phyloseq_obj:
         "envs/1_phyloseq.yaml"
     script: "scripts/1_phyloseq_obj.R"
 
-rule betadiversity_bubbleplot:
+rule bubbleplot:
     input:
         physeq="data/phyloseq/physeq_obj_rxn.rds"
     output:
@@ -45,6 +46,19 @@ rule betadiversity_bubbleplot:
     script:
         "scripts/1.5_bubbleplot.R"
 
+rule betadiversity:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds"
+    output:
+        png="output/betadiversity/betadiversity.png"
+    params:
+        micros=MICROS,
+        # timepoint="{timepoint}"
+    conda:
+        "envs/1.5_beta.yaml"
+    script:
+        "scripts/1.5_beta_diversity.R"
+
 rule differential_analysis_limma:
     input:
         physeq="data/phyloseq/physeq_obj.rds"
@@ -52,8 +66,8 @@ rule differential_analysis_limma:
         dge_out="data/diffential_gene_expression/DGE_{micro}.xlsx"
     params:
         micro="{micro}"
-    # conda:
-    #     "envs/2_limma.yaml"
+    conda:
+        "envs/2_limma.yaml"
     script:
         "scripts/2_limma.R"
 
@@ -64,20 +78,22 @@ rule differential_analysis_limma_rxn:
         dge_out="data/diffential_gene_expression/rxn_DGE_{micro}.xlsx"
     params:
         micro="{micro}"
-    # conda:
-    #     "envs/2_limma.yaml"
+    conda:
+        "envs/2_limma.yaml"
     script:
         "scripts/2_limma.R"
 
 rule differential_analysis_maaslin2:
     input:
         physeq="data/phyloseq/physeq_obj.rds"
+    output:
+        out_dir_maaslin=directory("data/maaslin_output/maaslin_DGE_{micro}")
     params:
         micro="{micro}",
         transformation=config["transformation"],# LOG, LOGIT, AST, NONE
         analysis_method=config["analysis_method"]  # LM, CPLM
-    output:
-        out_dir_maaslin=directory("data/maaslin_output/maaslin_DGE_{micro}")
+    conda:
+        "envs/2_maaslin2.yaml"
     script:
         "scripts/2_maaslin2.R"
 

@@ -8,3 +8,4 @@ dependencies:
   - bioconductor-variancepartition=1.32.2
   - bioconductor-edger=4.0.2
   - r-openxlsx=4.2.5.2
+  - r-matrix=1.6_3

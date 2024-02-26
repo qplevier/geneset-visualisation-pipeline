@@ -5,4 +5,5 @@ dependencies:
   - bioconductor-phyloseq=1.46.0
   - r-tidyverse=2.0.0
   - r-ggplot2=3.4.4
-  - r-rcolorbrewer=1.1_3
+  - r-compositions=2.0_8
+  - r-ggnewscale=0.4.10

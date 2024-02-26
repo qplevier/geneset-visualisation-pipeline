@@ -1,5 +1,5 @@
-# Title     : TODO
-# Objective : TODO
+# Title     : Phyloseq object
+# Objective : Use the output of the HUMAnN pipeline to create a phyloseq object with the Counts per Million
 # Created by: Quinten Plevier
 # Created on: 22-2-2024
 
@@ -33,7 +33,7 @@ data <- countData %>%
   rename(enzyme = X..Gene.Family) %>%
   mutate(enzyme = str_remove(enzyme, ".*: ")) %>%
   distinct() %>%
-  group_by(enzyme) %>%
+  group_by(enzyme) %>% # Remove duplicate enzymes if available by grouping and summing their values
   summarise(across(everything(), sum)) %>%
   ungroup() %>%
   column_to_rownames("enzyme") %>%
