@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-tidyverse=2.0.0
+  - bioconductor-rcy3=2.22.1
+  - r-glue=1.7.0

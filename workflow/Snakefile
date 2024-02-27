@@ -13,13 +13,16 @@ TIMEPOINTS_NO_BASELINE = TIMEPOINTS[
 onstart:
     shell("bash workflow/scripts/0_cleanup_snakemake.sh")
 
+onsuccess:
+    shell("rm -rf Rplots.pdf || true")
+
 rule all:
     input:
         expand("output/bubble/{micro}_{timepoint}.png", micro=MICROS, timepoint=TIMEPOINTS),
         "output/betadiversity/betadiversity.png",
         expand("data/diffential_gene_expression/DGE_{micro}.xlsx",micro=MICROS),
         expand("data/maaslin_output/maaslin_DGE_{micro}",micro=MICROS),
-        # expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE)
+        expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE)
 
 rule phyloseq_obj:
     input:
@@ -30,6 +33,8 @@ rule phyloseq_obj:
         physeq_out_rxn="data/phyloseq/physeq_obj_rxn.rds"
     conda:
         "envs/1_phyloseq.yaml"
+    log:
+        "logs/1_phyloseq.log"
     script: "scripts/1_phyloseq_obj.R"
 
 rule bubbleplot:
@@ -43,6 +48,8 @@ rule bubbleplot:
         top=40
     conda:
         "envs/1.5_bubble.yaml"
+    log:
+        "logs/1.5_bubble_{micro}_{timepoint}.log"
     script:
         "scripts/1.5_bubbleplot.R"
 
@@ -53,9 +60,10 @@ rule betadiversity:
         png="output/betadiversity/betadiversity.png"
     params:
         micros=MICROS,
-        # timepoint="{timepoint}"
     conda:
         "envs/1.5_beta.yaml"
+    log:
+        "logs/1.5_beta.log"
     script:
         "scripts/1.5_beta_diversity.R"
 
@@ -68,6 +76,8 @@ rule differential_analysis_limma:
         micro="{micro}"
     conda:
         "envs/2_limma.yaml"
+    log:
+        "logs/2_limma_{micro}.log"
     script:
         "scripts/2_limma.R"
 
@@ -80,6 +90,8 @@ rule differential_analysis_limma_rxn:
         micro="{micro}"
     conda:
         "envs/2_limma.yaml"
+    log:
+        "logs/2_limma_rxn_{micro}.log"
     script:
         "scripts/2_limma.R"
 
@@ -94,6 +106,8 @@ rule differential_analysis_maaslin2:
         analysis_method=config["analysis_method"]  # LM, CPLM
     conda:
         "envs/2_maaslin2.yaml"
+    log:
+        "logs/2_maaslin_{micro}.log"
     script:
         "scripts/2_maaslin2.R"
 
@@ -104,6 +118,10 @@ rule GSEA_rankings:
         out_rank="data/gsea_input/rxn_ranked_{micro}_{timepoint}.rnk"
     params:
         timepoint="{timepoint}"
+    conda:
+        "envs/3_gsea_input.yaml"
+    log:
+        "logs/3_gsea_input_{micro}_{timepoint}.log"
     script:
         "scripts/3_gsea_input.R"
 
@@ -116,6 +134,8 @@ rule GSEA_run:
     params:
         out_dir_gsea=directory("data/gsea_output"),
         rpt_label="{micro}_{timepoint}"
+    log:
+        "logs/3_gsea_run_{micro}_{timepoint}.log"
     script:
         "scripts/3_gsea.sh"
 
@@ -123,11 +143,16 @@ rule prep_cytoscape:
     input:
         physeq="data/phyloseq/physeq_obj_rxn.rds"
     output:
-        expression="data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt"
+        expression="data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt",
+        classes="data/enrichmentmap_input/classes_{micro}_{timepoint}.cls"
     params:
         baseline=BASELINE,
         micro="{micro}",
         timepoint="{timepoint}"
+    conda:
+        "envs/4_prep_cytoscape.yaml"
+    log:
+        "logs/4_prep_cytoscape_{micro}_{timepoint}.log"
     script:
         "scripts/4_prep_cytoscape.R"
 
@@ -135,10 +160,15 @@ rule cytoscape_enrichmentmap:
     input:
         gsea="data/gsea_output/{micro}_{timepoint}",
         gmt="do_not_touch/gsea_input/metacyc_pathways.gmt",
-        expression="data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt"
+        expression="data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt",
+        classes="data/enrichmentmap_input/classes_{micro}_{timepoint}.cls"
     output:
         image="output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg"
     resources:
         cytoscape_instances=1
+    conda:
+        "envs/4_cytoscape.yaml"
+    log:
+        "logs/4_cytoscape_{micro}_{timepoint}.log"
     script:
         "scripts/4_cytoscape.R"
