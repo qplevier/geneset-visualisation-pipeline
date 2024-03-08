@@ -18,3 +18,666 @@ java.lang.UnsatisfiedLinkError: Failed to locate library: libOpenCL.so
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
+java.lang.NullPointerException: Cannot invoke "org.cytoscape.model.CyTable.getColumn(String)" because "table" is null
+	at org.cytoscape.cyChart.internal.tasks.HistogramFilterTask.<init>(HistogramFilterTask.java:37)
+	at org.cytoscape.cyChart.internal.tasks.HistogramFilterTask.<init>(HistogramFilterTask.java:26)
+	at org.cytoscape.cyChart.internal.tasks.HistogramFilterTaskFactory.createTaskIterator(HistogramFilterTaskFactory.java:19)
+	at org.cytoscape.command.internal.available.AvailableCommandsImpl.getArgs(AvailableCommandsImpl.java:408)
+	at org.cytoscape.command.internal.available.AvailableCommandsImpl.getArguments(AvailableCommandsImpl.java:166)
+	at org.cytoscape.rest.internal.resource.CyRESTCommandSwagger$CommandModel.<init>(CyRESTCommandSwagger.java:399)
+	at org.cytoscape.rest.internal.resource.CyRESTCommandSwagger.setPostParameters(CyRESTCommandSwagger.java:311)
+	at org.cytoscape.rest.internal.resource.CyRESTCommandSwagger.addCommandPaths(CyRESTCommandSwagger.java:180)
+	at org.cytoscape.rest.internal.resource.CyRESTCommandSwagger.buildSwagger(CyRESTCommandSwagger.java:137)
+	at org.cytoscape.rest.internal.resource.CyRESTCommandSwagger.get(CyRESTCommandSwagger.java:472)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:205)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440)
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+java.lang.NullPointerException: Cannot invoke "org.cytoscape.work.util.ListSingleSelection.getPossibleValues()" because "lss" is null
+	at org.cytoscape.command.internal.tunables.ListSingleTunableHandler.processArg(ListSingleTunableHandler.java:40) ~[?:?]
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:91) ~[?:?]
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54) ~[?:?]
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305) ~[!/:?]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228) ~[!/:?]
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76) ~[!/:?]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90) ~[!/:?]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.Server.handle(Server.java:516) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034) [!/:9.4.46.v20220331]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+java.lang.IllegalArgumentException: Couldn't parse value from: weight for setting: EdgeAttribute
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:95) ~[?:?]
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54) ~[?:?]
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305) ~[!/:?]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228) ~[!/:?]
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76) ~[!/:?]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90) ~[!/:?]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.Server.handle(Server.java:516) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034) [!/:9.4.46.v20220331]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+java.lang.RuntimeException: Error processing arguments: Couldn't parse value from: weight for setting: EdgeAttribute
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:104) ~[?:?]
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54) ~[?:?]
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305) ~[!/:?]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228) ~[!/:?]
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76) ~[!/:?]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90) ~[!/:?]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.Server.handle(Server.java:516) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034) [!/:9.4.46.v20220331]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+java.lang.RuntimeException: Error processing arguments: Couldn't parse value from: weight for setting: EdgeAttribute
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:104)
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82)
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175)
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54)
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83)
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362)
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267)
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440)
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+java.lang.NullPointerException: Cannot invoke "org.cytoscape.work.util.ListSingleSelection.getPossibleValues()" because "lss" is null
+	at org.cytoscape.command.internal.tunables.ListSingleTunableHandler.processArg(ListSingleTunableHandler.java:40) ~[?:?]
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:91) ~[?:?]
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54) ~[?:?]
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305) ~[!/:?]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228) ~[!/:?]
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76) ~[!/:?]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90) ~[!/:?]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.Server.handle(Server.java:516) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034) [!/:9.4.46.v20220331]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+java.lang.IllegalArgumentException: Couldn't parse value from: weight for setting: NodeAttribute
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:95) ~[?:?]
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54) ~[?:?]
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305) ~[!/:?]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228) ~[!/:?]
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76) ~[!/:?]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90) ~[!/:?]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.Server.handle(Server.java:516) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034) [!/:9.4.46.v20220331]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+java.lang.RuntimeException: Error processing arguments: Couldn't parse value from: weight for setting: NodeAttribute
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:104) ~[?:?]
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175) ~[?:?]
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54) ~[?:?]
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362) ~[?:?]
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160) ~[!/:?]
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347) ~[!/:?]
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297) ~[!/:?]
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267) ~[!/:?]
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317) ~[!/:?]
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305) ~[!/:?]
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473) ~[!/:?]
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341) ~[!/:?]
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228) ~[!/:?]
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76) ~[!/:?]
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294) ~[!/:?]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) ~[!/:9.4.46.v20220331]
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90) ~[!/:?]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.Server.handle(Server.java:516) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487) ~[!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883) [!/:9.4.46.v20220331]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034) [!/:9.4.46.v20220331]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+java.lang.RuntimeException: Error processing arguments: Couldn't parse value from: weight for setting: NodeAttribute
+	at org.cytoscape.command.internal.tunables.CommandTunableInterceptorImpl.validateAndWriteBackTunables(CommandTunableInterceptorImpl.java:104)
+	at org.cytoscape.command.internal.TFExecutor.execute(TFExecutor.java:82)
+	at org.cytoscape.command.internal.CommandExecutorImpl.executeCommand(CommandExecutorImpl.java:175)
+	at org.cytoscape.command.internal.CommandExecutorTask.run(CommandExecutorTask.java:54)
+	at org.cytoscape.work.internal.sync.SyncTaskManager.execute(SyncTaskManager.java:83)
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.executeCommand(CommandResource.java:362)
+	at org.cytoscape.rest.internal.commands.resources.CommandResource.handleJSONCommand(CommandResource.java:267)
+	at jdk.internal.reflect.GeneratedMethodAccessor60.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:144)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:161)
+	at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$ResponseOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:160)
+	at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:99)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347)
+	at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102)
+	at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:326)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271)
+	at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:267)
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317)
+	at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:305)
+	at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1154)
+	at org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:473)
+	at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:427)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:388)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:341)
+	at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:228)
+	at com.eclipsesource.jaxrs.publisher.internal.ServletContainerBridge.service(ServletContainerBridge.java:76)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1631)
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:292)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:193)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1601)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:548)
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceServletHandler.doHandle(HttpServiceServletHandler.java:74)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:600)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1440)
+	at org.ops4j.pax.web.service.jetty.internal.HttpServiceContext.doHandle(HttpServiceContext.java:294)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1355)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.ops4j.pax.web.service.jetty.internal.JettyServerHandlerCollection.handle(JettyServerHandlerCollection.java:90)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:487)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:732)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:479)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.base/java.lang.Thread.run(Thread.java:840)

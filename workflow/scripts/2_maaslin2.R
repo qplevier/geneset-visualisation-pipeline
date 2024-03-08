@@ -50,6 +50,6 @@ fit <- data %>%
     max_significance = 0.05,
     random_effects = "id_sample",
     fixed_effects = "time",
-    reference = "time,T0",
-    cores = 1
+    reference = glue::glue("time,{snakemake@params[['baseline']]}"),
+    cores = snakemake@threads
   )

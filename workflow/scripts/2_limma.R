@@ -10,7 +10,7 @@ library(variancePartition)
 library(BiocParallel)
 library(edgeR)
 library(openxlsx)
-register(SnowParam(1, "SOCK", progressbar = T))
+register(SnowParam(snakemake@threads[[1]], "SOCK", progressbar = T))
 
 # Load phyloseq object
 physeq <- read_rds(snakemake@input[["physeq"]])

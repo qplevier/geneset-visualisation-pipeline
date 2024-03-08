@@ -11,6 +11,7 @@ library(tools)
 
 # Connect to a open Cytoscape GUI
 cytoscapePing()
+# closeSession(save.before.closing = FALSE)
 
 # Set folder and files paths
 rootFolder <- file_path_as_absolute(snakemake@input[["gsea"]])
@@ -34,20 +35,33 @@ glue(
 ) %>% commandsGET
 Sys.sleep(5)
 
+# setNodeSizeMapping('EnrichmentMap::gs_size', sizes = c(20, 50))
+setNodeFontSizeDefault(8, style.name = getCurrentStyle())
+Sys.sleep(1)
+
 # Annotate the clusters with AutoAnnotate
 # Sys.sleep is used to give the program some time to calculate everything, because the API returns immediately
-if (typeof(getAllEdges()) != "NULL") {
-  commandsGET('autoannotate annotate-clusterBoosted labelColumn="EnrichmentMap::GS_DESCR"')
-  Sys.sleep(1)
+tryCatch(
+{
+  if (typeof(getAllEdges()) != "NULL") {
+    commandsGET('autoannotate annotate-clusterBoosted labelColumn="EnrichmentMap::GS_DESCR"')
+    Sys.sleep(1)
 
-  # Create layout of the nodes
-  commandsGET("layout autoannotate-cose-cluster springStrength=70 repulsionStrength=0")
-  Sys.sleep(3)
-} else {
-  # If there are no edges, set nodes in a grid layout
-  commandsGET("layout grid nodeHorizontalSpacing=200 nodeVerticalSpacing=50")
-  Sys.sleep(3)
-}
+    # Create layout of the nodes
+    commandsGET("layout autoannotate-cose-cluster incremental=true springStrength=100 repulsionStrength=50 gravityStrength=50 compoundGravityStrength=50 gravityRange=50 compoundGravityRange=50 smartRepulsionRangeCalc=true smartEdgeLengthCalc=true useCatchallCluster=false")
+    # commandsGET("autoannotate layout")
+    Sys.sleep(3)
+  } else {
+    # If there are no edges, set nodes in a grid layout
+    commandsGET("layout grid nodeHorizontalSpacing=200 nodeVerticalSpacing=50")
+    Sys.sleep(3)
+  } },
+  error = function(e) {
+    commandsGET("layout grid nodeHorizontalSpacing=200 nodeVerticalSpacing=50")
+    Sys.sleep(3)
+  }
+)
+
 # Fit the content to the screen
 fitContent()
 Sys.sleep(2)
