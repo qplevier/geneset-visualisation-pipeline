@@ -32,6 +32,6 @@ data.frame()
 glue::glue(
   "{num_columns} 2 1
   # {snakemake@params[['baseline']]} {snakemake@params[['timepoint']]}
-  {toString(rep(c(0, 1), num_columns / 2)) %>% str_remove_all(., ',')}"
+  {toString(rep(c(snakemake@params[['baseline']], snakemake@params[['timepoint']]), num_columns / 2)) %>% str_remove_all(., ',')}"
 ) %>%
   writeLines(snakemake@output[["classes"]])

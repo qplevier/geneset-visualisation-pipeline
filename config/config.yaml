@@ -8,7 +8,7 @@ limma_threads: 2
 
 # Params for Maaslin2
 transformation: "LOG" # LOG, LOGIT, AST, NONE
-analysis_method: "CPLM" # LM, CPLM
+analysis_method: "LM" # LM, CPLM
 
 # Top N for bubbleplot
 top : 40

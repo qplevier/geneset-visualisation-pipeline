@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconductor-phyloseq=1.46.0
+  - r-tidyverse=2.0.0
+  - r-wgcna=1.71
+  - r-ggnewscale=0.4.10

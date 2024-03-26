@@ -21,7 +21,9 @@ rule all:
         "output/betadiversity/betadiversity.png",
         expand("data/diffential_gene_expression/DGE_{micro}.xlsx",micro=MICROS),
         expand("data/maaslin_output/maaslin_DGE_{micro}_{analysis_method}",micro=MICROS, analysis_method=ANALYSIS_METHOD),
-        expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE)
+        expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
+        expand("output/wgcna_{micro}", micro=MICROS),
+        "output/wgcna_consensus"
 
 rule phyloseq_obj:
     input:
@@ -103,7 +105,7 @@ rule differential_analysis_limma_rxn:
 
 rule differential_analysis_maaslin2:
     input:
-        physeq="data/phyloseq/physeq_obj.rds"
+        physeq="data/phyloseq/physeq_obj_rxn.rds"
     output:
         out_dir_maaslin=directory("data/maaslin_output/maaslin_DGE_{micro}_{analysis_method}")
     params:
@@ -184,3 +186,37 @@ rule cytoscape_enrichmentmap:
         "logs/4_cytoscape_{micro}_{timepoint}.log"
     script:
         "scripts/4_cytoscape.R"
+
+rule wgcna_micro:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds"
+    output:
+        outdir=directory("output/wgcna_{micro}")
+    params:
+        micro="{micro}",
+        cutoff=4400
+    threads: 2
+    conda:
+        "envs/5_wgcna.yaml"
+    log:
+        "logs/5_wgcna_{micro}.log"
+    script:
+        "scripts/5_wgcna_micro.R"
+
+rule wgcna_consensus:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds",
+        diffs=expand("data/diffential_gene_expression/DGE_{micro}.xlsx", micro=MICROS)
+    output:
+        outdir=directory("output/wgcna_consensus")
+    params:
+        micro=MICROS,
+        cutoff=4400,
+        micro_to_relate="parodontitis"
+    threads: 2
+    conda:
+        "envs/5_wgcna.yaml"
+    log:
+        "logs/5_wgcna_consensus.log"
+    script:
+        "scripts/5_wgcna_consensus.R"
