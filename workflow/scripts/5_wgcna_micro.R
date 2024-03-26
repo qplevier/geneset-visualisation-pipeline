@@ -181,8 +181,9 @@ net <- blockwiseModules(
   numericLabels = TRUE,
   pamRespectsDendro = FALSE,
   saveTOMs = TRUE,
-  saveTOMFileBase = sprintf("wgcna_%s", micro0),
-  verbose = 3
+  saveTOMFileBase = file.path(outdir, paste0("wgcna_", micro0)),
+  verbose = 3,
+  nThreads = snakemake@threads
 )
 
 # Convert labels to colors for plotting

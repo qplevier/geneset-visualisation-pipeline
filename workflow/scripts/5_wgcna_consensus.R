@@ -401,7 +401,7 @@ net <- blockwiseModules(
   numericLabels = TRUE,
   pamRespectsDendro = FALSE,
   saveTOMs = TRUE,
-  saveTOMFileBase = "wgcna",
+  saveTOMFileBase = file.path(outdir, "wgcna"),
   verbose = 3,
   nThreads = snakemake@threads
 )
