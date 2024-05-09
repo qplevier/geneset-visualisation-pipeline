@@ -7,6 +7,8 @@
 library(tidyverse)
 library(phyloseq)
 library(WGCNA)
+library(ggnewscale)
+library(readxl)
 options(stringsAsFactors = FALSE)
 
 # Extract parameters and output directory from snakemake object
@@ -85,10 +87,15 @@ if (!gsg$allOK)
 datTraits <- sample_data(physeq) %>%
   as("data.frame") %>%
   mutate(time = as.numeric(str_remove(time, "T"))) %>%
-  .[intersect(rownames(.), rownames(datExpr)),]
+  .[intersect(rownames(.), rownames(datExpr)),] %>%
+  binarizeCategoricalColumns(
+    dropFirstLevelVsAll = FALSE,
+    includePrefix = FALSE,
+    levelSep = "",
+    nameForAll = "")
 
 # Convert continuous data traits to a color representation: white means low, red means high, grey means missing entry
-traitColors <- numbers2colors(datTraits$time, signed = FALSE)
+traitColors <- numbers2colors(datTraits, signed = FALSE)
 
 # Plot the sample dendrogram and the colors underneath.
 png(
@@ -248,6 +255,39 @@ png(
 par(mar = c(5, 10, 3, 3))
 labeledHeatmap(
   Matrix = moduleTraitCor,
+  xLabels = names(datTraits),
+  yLabels = names(MEs),
+  ySymbols = names(MEs),
+  colorLabels = FALSE,
+  colors = blueWhiteRed(50),
+  textMatrix = textMatrix,
+  setStdMargins = FALSE,
+  cex.text = 0.5,
+  zlim = c(-1, 1),
+  main = paste("Module-trait relationships")
+)
+dev.off()
+
+moduleTraitCorNA <- moduleTraitCor
+moduleTraitPvalueNA <- moduleTraitPvalue
+is.na(moduleTraitCorNA) <- moduleTraitPvalue > 0.05
+is.na(moduleTraitPvalueNA) <- moduleTraitPvalue > 0.05
+
+# Create text matrix for displaying in the plot
+textMatrix <- ifelse(!is.na(moduleTraitCorNA), paste0(signif(moduleTraitCorNA, 2), "\n(", signif(moduleTraitPvalueNA, 2), ")"), "")
+dim(textMatrix) <- dim(moduleTraitCorNA)
+
+# Display the correlation values within a heatmap plot
+png(
+  file.path(outdir, "4_corr_traits_modules_signif.png"),
+  width = 12,
+  height = 9,
+  units = "in",
+  res = 300
+)
+par(mar = c(5, 10, 3, 3))
+labeledHeatmap(
+  Matrix = moduleTraitCorNA,
   xLabels = names(datTraits),
   yLabels = names(MEs),
   ySymbols = names(MEs),
@@ -461,3 +501,82 @@ cyt <- exportNetworkToCytoscape(
   altNodeNames = modGenes,
   nodeAttr = moduleColors[inModule]
 )
+
+ecs <- geneInfo %>%
+  filter(moduleColor == module) %>%
+  select(enzymes) %>%
+  mutate(enzymes = str_remove_all(enzymes, "(\\[|\\])")) %>%
+  pull(enzymes) %>%
+  str_replace_all("\\.", "\\\\.") %>%
+  paste0(., "\\D")
+
+for (pval in c("P.Value", "adj.P.Val")) {
+  dge <- read_excel(snakemake@input[["diff"]], sheet = "allresults") %>%
+    filter(grepl(paste(ecs, collapse = "|"), EC)) %>%
+    filter(eval(parse(text = pval)) < 0.05) %>%
+    rename("time" = "term") %>%
+    mutate(time = str_remove(time, "time"),
+           EC = str_remove(EC, "\\((expasy|metacyc)\\) "))
+
+  if (nrow(dge) != 0) {
+    averageEx <- dge %>%
+      select(time, EC, AveExpr) %>%
+      mutate(typename = "AveExp", .before = time) %>%
+      select(-time)
+
+    dge <- dge %>%
+      select(time, EC, logFC, AveExpr) %>%
+      mutate(typename = "logFC", .before = time) %>%
+      bind_rows(averageEx) %>%
+      mutate_at("time", ~replace_na(., ""))
+
+    # Determine the module to plot
+
+    # Create plot
+    p <- dge %>%
+      arrange(AveExpr) %>% # arrange to abundance level
+      mutate(EC = fct_inorder(factor(EC, ordered = TRUE))) %>%
+      ggplot(aes(time, reorder(EC, logFC))) +
+      geom_tile(aes(fill = logFC)) +
+      labs(fill = "Log Fold Change") +
+      scale_fill_gradient2(
+        midpoint = 0,
+        low = "royalblue",
+        mid = "white",
+        high = "red"
+      ) +
+      geom_text(aes(label = sprintf("%0.2f", round(logFC, digits = 2))),
+                color = "black",
+                size = 2) +
+      new_scale("fill") +
+      geom_tile(data = dge %>%
+        filter(typename == "AveExp"),
+                aes(fill = AveExpr)) +
+      labs(fill = "Average\nexpression\n(log2)") +
+      scale_fill_gradient(low = "antiquewhite", high = "aquamarine4") +
+      facet_grid(~typename,
+                 scales = "free_x",
+                 space = "free_x") +
+      labs(title = paste(micro0, "- Module:", module),
+           subtitle = "Up and down in the differential genes",
+           x = "Time",
+           y = "Enzyme",
+           caption = paste0(pval, " < 0.05")) +
+      theme(axis.text.y = element_text(size = 0.8)) +
+      theme_bw() +
+      scale_y_discrete(
+        label = function(x)
+          stringr::str_trunc(x, 60, "center")
+      )
+    plot(p)
+
+    # Save plot
+    ggsave(
+      file.path(outdir, paste0("diffs_", micro0, "_", pval, ".png")),
+      width = 2000,
+      height = 500 + length(unique(dge$EC)) * 40,
+      dpi = 200,
+      units = "px"
+    )
+  }
+}

@@ -165,20 +165,16 @@ datTraits <- sample_data(physeq) %>%
   as("data.frame") %>%
   mutate(time = as.numeric(str_remove(time, "T"))) %>%
   .[intersect(rownames(.), c(rownames(multiExpr[[1]]$data), rownames(multiExpr[[2]]$data))),] %>%
-  rownames_to_column("samples") %>%
-  mutate(value = 1) %>%
-  pivot_wider(
-    names_from = id_sample,
-    values_from = value,
-    values_fill = list(value = 0)
-  ) %>%
-  mutate(value = 1) %>%
-  pivot_wider(
-    names_from = micro,
-    values_from = value,
-    values_fill = list(value = 0)
-  ) %>%
-  column_to_rownames("samples")
+  binarizeCategoricalColumns(
+    dropFirstLevelVsAll = FALSE,
+    includePrefix = FALSE,
+    levelSep = "",
+    nameForAll = "") %>%
+  select(healthy, parodontitis, time,
+         order(colnames(.) %>%
+                 gsub("\\D", "", .) %>%
+                 as.numeric())
+  )
 
 # Form a multi-set structure that will hold the clinical traits.
 Traits <- lapply(1:nSets, function(set) {
@@ -515,12 +511,17 @@ MEColorNames <- paste0("ME", MEColors)
 
 # Plot the module-trait relationship table for set number 1
 set <- 1
-textMatrix <- paste0(signif(moduleTraitCor[[set]], 2), "\n(", signif(moduleTraitPvalue[[set]], 2), ")")
+textMatrix <- ifelse(!is.na(moduleTraitCor[[set]]),
+                     paste0(signif(moduleTraitCor[[set]], 2),
+                            "\n(",
+                            signif(moduleTraitPvalue[[set]], 2),
+                            ")"),
+                     "")
 dim(textMatrix) <- dim(moduleTraitCor[[set]])
 
 # Open a suitably sized window (the user should change the window size if necessary)
 png(
-  file = file.path(outdir, paste("5_ModuleTraitRelationships-", micro_to_relate, ".png")),
+  file = file.path(outdir, paste0("5_ModuleTraitRelationships-", snakemake@params[["micro"]][set], ".png")),
   width = 10,
   height = 7,
   units = "in",
@@ -545,11 +546,16 @@ dev.off()
 
 # Plot the module-trait relationship table for set number 2
 set <- 2
-textMatrix <- paste0(signif(moduleTraitCor[[set]], 2), "\n(", signif(moduleTraitPvalue[[set]], 2), ")")
+textMatrix <- ifelse(!is.na(moduleTraitCor[[set]]),
+                     paste0(signif(moduleTraitCor[[set]], 2),
+                            "\n(",
+                            signif(moduleTraitPvalue[[set]], 2),
+                            ")"),
+                     "")
 dim(textMatrix) <- dim(moduleTraitCor[[set]])
 
 png(
-  file = file.path(outdir, "5_ModuleTraitRelationships-parodontitis.png"),
+  file = file.path(outdir, paste0("5_ModuleTraitRelationships-", snakemake@params[["micro"]][set], ".png")),
   width = 10,
   height = 7,
   units = "in",
@@ -600,10 +606,12 @@ consensusCor[positive] <- pmin(Reduce(pmin, lapply(moduleTraitCor, function(x) x
 consensusPvalue[positive] <- pmax(Reduce(pmax, lapply(moduleTraitPvalue, function(x) x[positive])))
 
 # Prepare text matrix for heatmap
-textMatrix <- paste0(signif(consensusCor, 2),
-                     "\n(",
-                     signif(consensusPvalue, 2),
-                     ")")
+textMatrix <- ifelse(!is.na(consensusCor),
+                     paste0(signif(consensusCor, 2),
+                            "\n(",
+                            signif(consensusPvalue, 2),
+                            ")"),
+                     "")
 
 # Change the dimensions of textMatrix to match moduleTraitCor
 dim(textMatrix) <- dim(moduleTraitCor[[set]])
@@ -716,9 +724,9 @@ write.csv(info,
 
 # Determine the module of interest
 moduleColor <- consModules[which(consModuleLabels == moduleTraitCor[[1]] %>%
-  select(time) %>%
   rownames(.) %>%
-  .[which.min(consensusPvalue)] %>%
+  .[which(consensusPvalue == min(consensusPvalue, na.rm = T),
+          arr.ind = TRUE)[1]] %>%
   substring(3))]
 
 # Get ECs in this module
@@ -763,7 +771,6 @@ for (diff in diffs) {
       # Create plot
       p <- dge %>%
         arrange(AveExpr) %>% # arrange to abundance level
-        arrange(logFC) %>%
         mutate(EC = fct_inorder(factor(EC, ordered = TRUE))) %>%
         ggplot(aes(time, reorder(EC, logFC))) +
         geom_tile(aes(fill = logFC)) +
@@ -792,7 +799,11 @@ for (diff in diffs) {
              y = "Enzyme",
              caption = paste0(pval, " < 0.05")) +
         theme(axis.text.y = element_text(size = 0.8)) +
-        theme_bw()
+        theme_bw() +
+        scale_y_discrete(
+          label = function(x)
+            stringr::str_trunc(x, 60, "center")
+        )
       plot(p)
 
       # Save plot

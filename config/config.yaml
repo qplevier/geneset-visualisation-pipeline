@@ -11,4 +11,4 @@ transformation: "LOG" # LOG, LOGIT, AST, NONE
 analysis_method: "LM" # LM, CPLM
 
 # Top N for bubbleplot
-top : 40
+top: 40

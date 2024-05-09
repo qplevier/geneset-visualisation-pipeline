@@ -20,11 +20,6 @@ sampleData <- physeq %>%
   rownames_to_column("id") %>%
   mutate(id_sample = as.factor(id_sample))
 
-# Get count data
-otu <- physeq %>%
-  otu_table %>%
-  as.data.frame()
-
 # Create PCA data with prcomp() and centered log ratio
 pcaFit <- physeq %>%
   otu_table() %>%

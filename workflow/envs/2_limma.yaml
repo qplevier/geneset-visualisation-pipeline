@@ -9,3 +9,4 @@ dependencies:
   - bioconductor-edger=4.0.2
   - r-openxlsx=4.2.5.2
   - r-matrix=1.6_3
+  - r-ggnewscale=0.4.10

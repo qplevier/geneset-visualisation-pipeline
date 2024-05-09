@@ -18,27 +18,26 @@ metadata <- sample_data(physeq) %>%
          id_sample = str_trim(id_sample))
 
 # Get count data
-data <- otu_table(physeq) %>%
+data <- physeq %>%
+  subset_samples(micro == snakemake@params[["micro"]]) %>%
+  otu_table() %>%
   as.data.frame() %>%
+  filter(rowSums(.) != 0) %>%
   rownames_to_column("enzymes") %>%
   filter(!grepl("\\|", enzymes)) %>%
-  filter(enzymes != "UNMAPPED" & enzymes != "UNGROUPED") %>%
-  mutate(enzymes = str_remove(enzymes, ".*: "),
-         enzymes = str_remove(enzymes, "\\((metacyc|expasy)\\) ")) %>%
-  separate(enzymes, c("enzymes", "ec"), sep = "(?=\\[\\d\\..*\\])", fill = "right") %>%
-  distinct(across(-enzymes), .keep_all = TRUE) %>%
-  unite("enzymes", enzymes, ec, sep = "") %>%
-  mutate(enzymes = make.unique(enzymes)) %>%
+  filter(enzymes != "UNMAPPED" | enzymes != "UNGROUPED") %>%
+  mutate(enzymes = str_remove(enzymes, ".*\\((metacyc|expasy)\\) ")) %>%
+  group_by(enzymes) %>%
+  summarise(across(where(is.numeric), mean)) %>%
   data.table::transpose(keep.names = "enzymes") %>%
   column_to_rownames("enzymes") %>%
   `colnames<-`(.[1,]) %>%
   .[-1,] %>%
-  mutate_all(function(x) as.numeric(as.character(x))) %>%
-  filter(grepl(ifelse(snakemake@params[["micro"]] == "healthy", "Pala", "NS"), rownames(.)))
+  mutate_all(function(x) as.numeric(as.character(x)))
 
 # Execute MaAsLin2
 # Filter on minumum prevelance 0.1 (default)
-fit <- data %>%
+fit_data <- data %>%
   Maaslin2(
     input_data = .,
     input_metadata = metadata,

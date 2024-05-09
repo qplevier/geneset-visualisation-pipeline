@@ -18,12 +18,17 @@ onsuccess: shell("rm -rf Rplots.pdf || true")
 rule all:
     input:
         expand("output/bubble/{micro}_{timepoint}.png", micro=MICROS, timepoint=TIMEPOINTS),
+        "output/bubble/top_all.png",
+        "output/bubble/differences_all.png",
         "output/betadiversity/betadiversity.png",
         expand("data/diffential_gene_expression/DGE_{micro}.xlsx",micro=MICROS),
-        expand("data/maaslin_output/maaslin_DGE_{micro}_{analysis_method}",micro=MICROS, analysis_method=ANALYSIS_METHOD),
-        expand("output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
+        expand("data/diffential_gene_expression/rxn_DGE_{micro}.xlsx",micro=MICROS),
+        expand("data/maaslin_output/maaslin_DGE_{analysis_method}_{micro}", micro=MICROS, analysis_method=ANALYSIS_METHOD),
+        expand("output/differentials_maaslin/{analysis_method}_{micro}_up.png",micro=MICROS, analysis_method=ANALYSIS_METHOD),
+        expand("output/figures_cytoscape/{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
         expand("output/wgcna_{micro}", micro=MICROS),
-        "output/wgcna_consensus"
+        "output/wgcna_consensus",
+        "output/diffs_in_gsea_out"
 
 rule phyloseq_obj:
     input:
@@ -56,6 +61,22 @@ rule bubbleplot:
     script:
         "scripts/1.5_bubbleplot.R"
 
+rule bubbleplot_all:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds"
+    output:
+        png="output/bubble/top_all.png",
+        png2="output/bubble/differences_all.png"
+    params:
+        top=config["top"]
+    conda:
+        "envs/1.5_bubble.yaml"
+    log:
+        "logs/1.5_bubble_all.log"
+    threads: 1
+    script:
+        "scripts/1.5_bubbleplot_all.R"
+
 rule betadiversity:
     input:
         physeq="data/phyloseq/physeq_obj_rxn.rds"
@@ -75,7 +96,9 @@ rule differential_analysis_limma:
     input:
         physeq="data/phyloseq/physeq_obj.rds"
     output:
-        dge_out="data/diffential_gene_expression/DGE_{micro}.xlsx"
+        dge_out="data/diffential_gene_expression/DGE_{micro}.xlsx",
+        png_up="output/differentials_limma/{micro}_up.png",
+        png_down="output/differentials_limma/{micro}_down.png",
     params:
         micro="{micro}"
     conda:
@@ -91,7 +114,9 @@ rule differential_analysis_limma_rxn:
     input:
         physeq="data/phyloseq/physeq_obj_rxn.rds"
     output:
-        dge_out="data/diffential_gene_expression/rxn_DGE_{micro}.xlsx"
+        dge_out="data/diffential_gene_expression/rxn_DGE_{micro}.xlsx",
+        png_up="output/differentials_limma_rxn/{micro}_up.png",
+        png_down="output/differentials_limma_rxn/{micro}_down.png",
     params:
         micro="{micro}"
     conda:
@@ -107,7 +132,8 @@ rule differential_analysis_maaslin2:
     input:
         physeq="data/phyloseq/physeq_obj_rxn.rds"
     output:
-        out_dir_maaslin=directory("data/maaslin_output/maaslin_DGE_{micro}_{analysis_method}")
+        out_dir_maaslin=directory("data/maaslin_output/maaslin_DGE_{analysis_method}_{micro}"),
+        results="data/maaslin_output/maaslin_DGE_{analysis_method}_{micro}/all_results.tsv"
     params:
         micro="{micro}",
         transformation=config["transformation"], # LOG, LOGIT, AST, NONE
@@ -121,6 +147,23 @@ rule differential_analysis_maaslin2:
     priority: 1
     script:
         "scripts/2_maaslin2.R"
+
+rule maaslin2_figures:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds",
+        results="data/maaslin_output/maaslin_DGE_{analysis_method}_{micro}/all_results.tsv"
+    output:
+        png_up="output/differentials_maaslin/{analysis_method}_{micro}_up.png",
+        png_down="output/differentials_maaslin/{analysis_method}_{micro}_down.png"
+    params:
+        micro="{micro}"
+    conda:
+        "envs/2_maaslin2.yaml"
+    log:
+        "logs/2_maaslin_figures_{micro}_{analysis_method}.log"
+    threads: 1
+    script:
+        "scripts/2_maaslin2_figures.R"
 
 rule GSEA_rankings:
     input:
@@ -177,7 +220,7 @@ rule cytoscape_enrichmentmap:
         expression="data/enrichmentmap_input/expressions_{micro}_{timepoint}.txt",
         classes="data/enrichmentmap_input/classes_{micro}_{timepoint}.cls"
     output:
-        image="output/figures_cytoscape/cytoscape_{micro}_{timepoint}.svg"
+        image="output/figures_cytoscape/{micro}_{timepoint}.svg"
     resources:
         cytoscape_instances=1
     conda:
@@ -189,7 +232,8 @@ rule cytoscape_enrichmentmap:
 
 rule wgcna_micro:
     input:
-        physeq="data/phyloseq/physeq_obj_rxn.rds"
+        physeq="data/phyloseq/physeq_obj_rxn.rds",
+        diff="data/diffential_gene_expression/DGE_{micro}.xlsx"
     output:
         outdir=directory("output/wgcna_{micro}")
     params:
@@ -220,3 +264,20 @@ rule wgcna_consensus:
         "logs/5_wgcna_consensus.log"
     script:
         "scripts/5_wgcna_consensus.R"
+
+rule diffs_in_gsea_out:
+    input:
+        physeq="data/phyloseq/physeq_obj_rxn.rds",
+        diffs=expand("data/diffential_gene_expression/rxn_DGE_{micro}.xlsx", micro=MICROS)
+    output:
+        outdir=directory("output/diffs_in_gsea_out")
+    params:
+        micro=MICROS,
+        time=TIMEPOINTS_NO_BASELINE
+    threads: 1
+    conda:
+        "envs/6_diffs_in_gsea_out.yaml"
+    log:
+        "logs/6_diffs_in_gsea_out.log"
+    script:
+        "scripts/6_diffs_in_gsea_out.R"

@@ -86,7 +86,7 @@ ggplot(table,
                     guide = "none") +
   labs(x = "Individual",
        y = "Species",
-       title = glue::glue("{snakemake@params[['top']]} most abundant species")) +
+       title = glue::glue("Top {snakemake@params[['top']]} most abundant species")) +
   theme(strip.text.x = element_text(size = 12))
 
 # Save the plot

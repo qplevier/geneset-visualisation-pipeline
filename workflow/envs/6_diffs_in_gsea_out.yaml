@@ -4,6 +4,6 @@ channels:
 dependencies:
   - bioconductor-phyloseq=1.46.0
   - r-tidyverse=2.0.0
-  - bioconductor-maaslin2=1.16.0
-  - r-matrix=1.6_3
-  - r-ggnewscale=0.4.10
+  - r-ggplot2=3.4.4
+  - r-readxl=1.4.3
+  - r-reshape2=1.4.4

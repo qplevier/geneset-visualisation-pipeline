@@ -43,12 +43,12 @@ Sys.sleep(1)
 # Sys.sleep is used to give the program some time to calculate everything, because the API returns immediately
 tryCatch(
 {
-  if (typeof(getAllEdges()) != "NULL") {
-    commandsGET('autoannotate annotate-clusterBoosted labelColumn="EnrichmentMap::GS_DESCR"')
-    Sys.sleep(1)
+  if (length(getAllEdges()) != "NULL") {
+    commandsGET('autoannotate annotate-clusterBoosted labelColumn="EnrichmentMap::GS_DESCR" edgeWeightColumn="EnrichmentMap::overlap_size"')
+    Sys.sleep(3)
 
     # Create layout of the nodes
-    commandsGET("layout autoannotate-cose-cluster incremental=true springStrength=100 repulsionStrength=50 gravityStrength=50 compoundGravityStrength=50 gravityRange=50 compoundGravityRange=50 smartRepulsionRangeCalc=true smartEdgeLengthCalc=true useCatchallCluster=false")
+    commandsGET("layout autoannotate-cose-cluster incremental=true springStrength=100 repulsionStrength=10 gravityStrength=50 compoundGravityStrength=50 gravityRange=50 compoundGravityRange=50 smartRepulsionRangeCalc=true smartEdgeLengthCalc=true useCatchallCluster=false")
     # commandsGET("autoannotate layout")
     Sys.sleep(3)
   } else {
