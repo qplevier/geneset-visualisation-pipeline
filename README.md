@@ -1,6 +1,6 @@
 # Geneset visualisation pipeline
 ### Quinten Plevier, Stage TNO
-##### Last update: 26-03-2024
+##### Last update: 04-06-2024
 
 ## User input
 Make a folder `data/user_input/` where you put your count data with filetype `.tsv` and your metadata with filetype `.txt`. Change the folders in `config/config.yaml` with your respective file names. Further change the config file to your liking. 

@@ -23,7 +23,7 @@ rule all:
         "output/betadiversity/betadiversity.png",
         expand("data/diffential_gene_expression/DGE_{micro}.xlsx",micro=MICROS),
         expand("data/diffential_gene_expression/rxn_DGE_{micro}.xlsx",micro=MICROS),
-        expand("data/maaslin_output/maaslin_DGE_{analysis_method}_{micro}", micro=MICROS, analysis_method=ANALYSIS_METHOD),
+        #expand("data/maaslin_output/maaslin_DGE_{analysis_method}_{micro}", micro=MICROS, analysis_method=ANALYSIS_METHOD),
         expand("output/differentials_maaslin/{analysis_method}_{micro}_up.png",micro=MICROS, analysis_method=ANALYSIS_METHOD),
         expand("output/figures_cytoscape/{micro}_{timepoint}.svg",micro=MICROS,timepoint=TIMEPOINTS_NO_BASELINE),
         expand("output/wgcna_{micro}", micro=MICROS),
@@ -274,6 +274,7 @@ rule diffs_in_gsea_out:
     params:
         micro=MICROS,
         time=TIMEPOINTS_NO_BASELINE
+    priority: -1
     threads: 1
     conda:
         "envs/6_diffs_in_gsea_out.yaml"
